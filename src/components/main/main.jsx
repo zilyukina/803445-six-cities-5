@@ -45,7 +45,7 @@ const Main = (props) => {
                 <a className="locations__item-link tabs__item" href="#">
                   <span>Cologne</span>
                 </a>
-              </li>errorsCount
+              </li>
               <li className="locations__item">
                 <a className="locations__item-link tabs__item" href="#">
                   <span>Brussels</span>
