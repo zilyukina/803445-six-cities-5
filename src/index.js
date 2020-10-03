@@ -7,6 +7,6 @@ const SETTINGS = {
 };
 
 ReactDOM.render(
-    <App placesAmount={SETTINGS.PLACES_AMOUNT}/>,
+    <App placesAmount={SETTINGS.PLACES_AMOUNT} />,
     document.querySelector(`#root`)
 );
