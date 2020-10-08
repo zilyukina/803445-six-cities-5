@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {AccomodationType} from "../../const";
 
 const OfferCard = ({offer}) => {
   const {
@@ -7,10 +8,11 @@ const OfferCard = ({offer}) => {
     price,
     imgMain,
     title,
-    premium
+    premium,
+    stars
     // onHover
   } = offer;
-  const style80 = {width: `80%`};
+  const rating = {width: `${20 * stars}%`};
   return (
     <article className="cities__place-card place-card">
       {premium &&
@@ -39,7 +41,7 @@ const OfferCard = ({offer}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={style80}></span>
+            <span style={rating}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -54,11 +56,11 @@ const OfferCard = ({offer}) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
-    type: PropTypes.string,
-    price: PropTypes.number,
-    imgMain: PropTypes.string,
-    title: PropTypes.string,
-    city: PropTypes.string,
+    type: PropTypes.oneOf([AccomodationType.ROOM, AccomodationType.APARTMENT]).isRequired,
+    price: PropTypes.number.isRequired,
+    imgMain: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
     bedroomsCount: PropTypes.number,
     guests: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
