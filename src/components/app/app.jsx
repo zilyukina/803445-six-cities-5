@@ -13,7 +13,10 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main placesAmount={placesAmount} offers={offers}/>
+          <Main
+            on
+            placesAmount={placesAmount}
+            offers={offers}/>
         </Route>
       </Switch>
       <Route path="/login" exact component={SignIn}></Route>

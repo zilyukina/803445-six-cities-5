@@ -15,7 +15,7 @@ class OffersList extends PureComponent {
     const {offers} = this.props;
 
     return (
-      <div className="cities__places-list places__list tabs__content">
+      <React.Fragment>
         {offers.map((offer) =>
           <Offer key={offer.id}
             offer={offer}
@@ -24,13 +24,13 @@ class OffersList extends PureComponent {
                 activeOffer
               });
             }}/>)}
-      </div>
+      </React.Fragment>
     );
   }
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.array
+  offers: PropTypes.array.isRequired,
 };
 
 
