@@ -128,7 +128,7 @@ export default [
     premium: false
   },
   {
-    id: 5,
+    id: 8,
     type: `Private room`,
     title: `Wood and stone place`,
     imgMain: `room.jpg`,

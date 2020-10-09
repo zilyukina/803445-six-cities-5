@@ -1,30 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {AccomodationType} from "../../const";
+import {Link} from "react-router-dom";
 
-const OfferCard = ({offer}) => {
+const OfferCard = ({offer, setActive}) => {
   const {
     type,
     price,
     imgMain,
     title,
     premium,
-    stars
-    // onHover
+    stars,
+    id
   } = offer;
   const rating = {width: `${20 * stars}%`};
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={() => setActive(offer)} onMouseLeave={() => setActive(null)}>
       {premium &&
         <div className="place-card__mark">
           <span >Premium</span>
         </div>
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link
+          to={{
+            pathname: `/offer/${id}`,
+          }}>
           <img className="place-card__image" src={`img/` + imgMain} width="260" height="200"
             alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -46,7 +50,11 @@ const OfferCard = ({offer}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link
+            to={{
+              pathname: `/offer/${id}`,
+            }}
+          >{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -55,7 +63,9 @@ const OfferCard = ({offer}) => {
 };
 
 OfferCard.propTypes = {
+  setActive: PropTypes.func.isRequired,
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     type: PropTypes.oneOf([AccomodationType.ROOM, AccomodationType.APARTMENT]).isRequired,
     price: PropTypes.number.isRequired,
     imgMain: PropTypes.string.isRequired,
@@ -70,6 +80,5 @@ OfferCard.propTypes = {
     onHover: PropTypes.func,
   })
 };
-
 
 export default OfferCard;
