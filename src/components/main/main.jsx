@@ -89,7 +89,12 @@ const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers} classPrefix="cities"/>
+                <OffersList
+                  offers={offers}
+                  cardModifier="cities__place-card"
+                  imgModifier="cities__image-wrapper"
+                  showPremiumLabel="true"
+                />
               </div>
             </section>
             <div className="cities__right-section">

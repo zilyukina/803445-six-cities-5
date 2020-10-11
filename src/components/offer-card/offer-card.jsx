@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {AccomodationType} from "../../const";
 import {Link} from "react-router-dom";
 
-const OfferCard = ({offer, setActive}) => {
+const OfferCard = ({offer, setActive, cardModifier, imgModifier, infoModifier, showPremiumLabel}) => {
   const {
     type,
     price,
@@ -14,14 +14,18 @@ const OfferCard = ({offer, setActive}) => {
     id
   } = offer;
   const rating = {width: `${20 * stars}%`};
+  const classesCard = `place-card ${cardModifier}`;
+  const classesImg = `place-card__image-wrapper ${imgModifier}`;
+  const classesInfo = `place-card__info ${infoModifier}`;
+
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => setActive(offer)} onMouseLeave={() => setActive(null)}>
-      {premium &&
+    <article className={classesCard} onMouseEnter={() => setActive(offer)} onMouseLeave={() => setActive(null)}>
+      {premium && showPremiumLabel &&
         <div className="place-card__mark">
           <span >Premium</span>
         </div>
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={classesImg}>
         <Link
           to={{
             pathname: `/offer/${id}`,
@@ -30,7 +34,7 @@ const OfferCard = ({offer, setActive}) => {
             alt="Place image" />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={classesInfo}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -64,6 +68,10 @@ const OfferCard = ({offer, setActive}) => {
 
 OfferCard.propTypes = {
   setActive: PropTypes.func.isRequired,
+  cardModifier: PropTypes.string,
+  imgModifier: PropTypes.string,
+  infoModifier: PropTypes.string,
+  showPremiumLabel: PropTypes.bool,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf([AccomodationType.ROOM, AccomodationType.APARTMENT]).isRequired,
