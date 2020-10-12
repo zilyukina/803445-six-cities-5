@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AccomodationType} from "../../const";
 import {Link} from "react-router-dom";
+import StarRating from "../star-rating/star-rating";
 
 const OfferCard = ({offer, setActive, cardModifier, imgModifier, infoModifier, showPremiumLabel}) => {
   const {
@@ -11,12 +12,13 @@ const OfferCard = ({offer, setActive, cardModifier, imgModifier, infoModifier, s
     title,
     premium,
     stars,
-    id
+    id,
+    isFavorite
   } = offer;
-  const rating = {width: `${20 * stars}%`};
   const classesCard = `place-card ${cardModifier}`;
   const classesImg = `place-card__image-wrapper ${imgModifier}`;
   const classesInfo = `place-card__info ${infoModifier}`;
+  const classesBtnFavorite = `place-card__bookmark-button ${ isFavorite ? `place-card__bookmark-button--active` : ``}  button`;
 
   return (
     <article className={classesCard} onMouseEnter={() => setActive(offer)} onMouseLeave={() => setActive(null)}>
@@ -40,7 +42,7 @@ const OfferCard = ({offer, setActive, cardModifier, imgModifier, infoModifier, s
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button className={classesBtnFavorite} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -49,8 +51,7 @@ const OfferCard = ({offer, setActive, cardModifier, imgModifier, infoModifier, s
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={rating}></span>
-            <span className="visually-hidden">Rating</span>
+            <StarRating stars={stars} />
           </div>
         </div>
         <h2 className="place-card__name">
@@ -86,6 +87,7 @@ OfferCard.propTypes = {
     stars: PropTypes.number,
     premium: PropTypes.bool,
     onHover: PropTypes.func,
+    isFavorite: PropTypes.bool
   })
 };
 

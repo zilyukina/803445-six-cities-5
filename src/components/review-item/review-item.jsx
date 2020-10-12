@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {getFormattedDate} from "../../utils/dates";
+import StarRating from "../star-rating/star-rating";
 
 const ReviewItem = ({review}) => {
   const {
@@ -9,7 +10,6 @@ const ReviewItem = ({review}) => {
     date,
     user,
   } = review;
-  const rating = {width: `${20 * stars}%`};
   const avatarPath = `img/${user.avatar}`;
   const formattedDate = getFormattedDate(date);
   return (
@@ -25,8 +25,7 @@ const ReviewItem = ({review}) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={rating}></span>
-            <span className="visually-hidden">Rating</span>
+            <StarRating stars={stars} />
           </div>
         </div>
         <p className="reviews__text">

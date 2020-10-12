@@ -17,4 +17,4 @@ export const getFormattedDate = (dateStr) => {
   const year = date.getFullYear();
   const month = date.getMonth();
   return `${year} ${MONTHS_NAMES[month]}`;
-}
+};
