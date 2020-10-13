@@ -7,12 +7,16 @@ import Room from "../room/room";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 const App = (props) => {
-  const {placesAmount} = props;
+  const {placesAmount, offers} = props;
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main placesAmount={placesAmount} />
+          <Main
+            on
+            placesAmount={placesAmount}
+            offers={offers}/>
         </Route>
       </Switch>
       <Route path="/login" exact component={SignIn}></Route>
@@ -24,6 +28,7 @@ const App = (props) => {
 
 App.propTypes = {
   placesAmount: PropTypes.number.isRequired,
+  offers: PropTypes.array
 };
 
 
