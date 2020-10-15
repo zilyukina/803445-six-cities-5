@@ -90,17 +90,17 @@ const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {/* <OffersList
+                <OffersList
                   offers={offers}
                   cardModifier="cities__place-card"
                   imgModifier="cities__image-wrapper"
-                  showPremiumLabel="true"
-                /> */}
+                  showPremiumLabel={true}
+                />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map />
+                <Map offers={offers}/>
               </section>
             </div>
           </div>
