@@ -39,7 +39,6 @@ class Map extends PureComponent {
         .marker(offerCords, {icon})
         .addTo(map);
     });
-
   }
 
   render() {
