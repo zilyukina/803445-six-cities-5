@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list";
+import Map from "../map/map";
 
 const Main = (props) => {
   const {placesAmount, offers} = props;
@@ -89,16 +90,18 @@ const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList
+                {/* <OffersList
                   offers={offers}
                   cardModifier="cities__place-card"
                   imgModifier="cities__image-wrapper"
                   showPremiumLabel="true"
-                />
+                /> */}
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map />
+              </section>
             </div>
           </div>
         </div>
