@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
-import './map.css'
+import './map.css';
 
 class Map extends PureComponent {
   constructor(props) {
@@ -34,7 +34,6 @@ class Map extends PureComponent {
       .addTo(map);
 
     offers.forEach((offer) => {
-      console.log(offer.coordinates)
       const offerCords = offer.coordinates;
       leaflet
         .marker(offerCords, {icon})
@@ -45,7 +44,7 @@ class Map extends PureComponent {
 
   render() {
     return (
-      <div id="map">></div>
+      <div id="map"></div>
     );
   }
 }
