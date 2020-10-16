@@ -4,33 +4,26 @@ import leaflet from "leaflet";
 import './map.css';
 
 class Map extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    const {offers} = this.props;
-
-    const city = [52.38333, 4.9];
+    const {offers, defaultCity, config} = this.props;
 
     const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [27, 39]
+      iconUrl: config.ICON_URL,
+      iconSize: config.ICON_SIZE
     });
 
-    const zoom = 12;
+    const zoom = config.DFAULT_ZOOM;
     const map = leaflet.map(`map`, {
-      center: city,
+      center: defaultCity,
       zoom,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoom);
 
-    leaflet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contr` +
-          `ibutors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-    })
+    map.setView(defaultCity, zoom);
+
+    leaflet
+      .tileLayer(config.TILE_LAYER_URL_TEMPLATE, config.TILE_LAYER_URL_OPTIONS)
       .addTo(map);
 
     offers.forEach((offer) => {
@@ -50,6 +43,8 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
+  defaultCity: PropTypes.arrayOf(PropTypes.number).isRequired,
+  config: PropTypes.object.isRequired
 };
 
 

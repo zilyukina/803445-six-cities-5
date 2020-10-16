@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list";
 import Map from "../map/map";
+import MAP_CONFIG from '../map/config';
 
 const Main = (props) => {
   const {placesAmount, offers} = props;
+  const {DEFAULT_CITY_COORDS, ...CONFIG} = MAP_CONFIG;
 
   return (
     <div className="page page--gray page--main">
@@ -100,7 +102,7 @@ const Main = (props) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={offers}/>
+                <Map offers={offers} defaultCity={DEFAULT_CITY_COORDS} config={...CONFIG}/>
               </section>
             </div>
           </div>
