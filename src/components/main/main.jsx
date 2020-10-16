@@ -102,7 +102,7 @@ const Main = (props) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={offers} defaultCity={DEFAULT_CITY_COORDS} config={...CONFIG}/>
+                <Map offers={offers} defaultCity={DEFAULT_CITY_COORDS} config={CONFIG}/>
               </section>
             </div>
           </div>

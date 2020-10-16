@@ -6,7 +6,6 @@ import './map.css';
 class Map extends PureComponent {
   componentDidMount() {
     const {offers, defaultCity, config} = this.props;
-
     const icon = leaflet.icon({
       iconUrl: config.ICON_URL,
       iconSize: config.ICON_SIZE
