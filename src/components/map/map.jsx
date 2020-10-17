@@ -11,7 +11,7 @@ class Map extends PureComponent {
       iconSize: config.ICON_SIZE
     });
 
-    const zoom = config.DFAULT_ZOOM;
+    const zoom = config.DЕFAULT_ZOOM;
     const map = leaflet.map(`map`, {
       center: defaultCity,
       zoom,
