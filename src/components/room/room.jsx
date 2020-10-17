@@ -74,7 +74,7 @@ const Room = () => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <StarRating stars="4" />
+                  <StarRating stars={4} />
                 </div>
                 <span className="property__rating-value rating__value">4.8</span>
               </div>
