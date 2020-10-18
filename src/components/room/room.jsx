@@ -1,12 +1,16 @@
 import React from "react";
-import Feedback from "../feedback/feedback";
 import ReviewsList from "../reviews-list/reviews-list";
 import reviews from "../../mocks/reviews";
 import StarRating from "../star-rating/star-rating";
-import OffersList from "../offers-list/offers-list";
 import offers from "../../mocks/offers";
+import Map from "../map/map";
+import MapConfig from "../map/config";
+import NeighbourOffers from "../neighbour-offers/neighbour-offers";
 
 const Room = () => {
+  const {DEFAULT_CITY_COORDS, ...CONFIG} = MapConfig;
+  const neighbourOffers = offers.slice(0, 3);
+
   return (
     <div className="page">
       <header className="header">
@@ -148,22 +152,15 @@ const Room = () => {
                 </div>
               </div>
               <ReviewsList reviews={reviews} modifier="property__reviews"/>
-              <Feedback />
             </div>
           </div>
-          <section className="property__map map"></section>
+
+          <section className="property__map map">
+            <Map offers={neighbourOffers} defaultCity={DEFAULT_CITY_COORDS} config={CONFIG}/>
+          </section>
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              <OffersList
-                offers={offers.splice(0, 3)}
-                cardModifier="near-places__card"
-                imgModifier="near-places__image-wrapper"
-              />
-            </div>
-          </section>
+          <NeighbourOffers offers={neighbourOffers}/>
         </div>
       </main>
     </div>

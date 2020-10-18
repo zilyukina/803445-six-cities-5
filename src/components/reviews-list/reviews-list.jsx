@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReviewItem from "../review-item/review-item";
+import Feedback from "../feedback/feedback";
 
 const ReviewsList = ({reviews, modifier}) => {
   const classes = `${modifier} reviews`;
@@ -14,6 +15,7 @@ const ReviewsList = ({reviews, modifier}) => {
           />)
         }
       </ul>
+      <Feedback />
     </section>
   );
 };
