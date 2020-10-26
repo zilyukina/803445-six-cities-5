@@ -8,6 +8,7 @@ import MapConfig from "../map/config";
 import NeighbourOffers from "../neighbour-offers/neighbour-offers";
 
 const Room = () => {
+  // TODO: change spread to object.assign
   const {DEFAULT_CITY_COORDS, ...CONFIG} = MapConfig;
   const neighbourOffers = offers.slice(0, 3);
 

@@ -2,7 +2,7 @@ import {ActionType} from './action';
 import {extend} from '../utils/extend';
 
 const initialState = {
-  city: ``,
+  city: `Paris`,
 };
 
 const reducer = (state = initialState, action) => {
