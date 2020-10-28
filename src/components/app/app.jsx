@@ -7,15 +7,15 @@ import Room from "../room/room";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 const App = (props) => {
-  const {placesAmount, offers} = props;
+  const {citiesList, offers, citiesCenters} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
           <Main
-            on
-            placesAmount={placesAmount}
+            citiesList={citiesList}
+            citiesCenters={citiesCenters}
             offers={offers}/>
         </Route>
       </Switch>
@@ -27,7 +27,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  placesAmount: PropTypes.number.isRequired,
+  citiesList: PropTypes.array.isRequired,
+  citiesCenters: PropTypes.object.isRequired,
   offers: PropTypes.array
 };
 
