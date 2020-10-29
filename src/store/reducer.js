@@ -1,8 +1,10 @@
 import {ActionType} from './action';
 import {extend} from '../utils/extend';
+import {SortTypes} from '../const'
 
 const initialState = {
   city: `Paris`,
+  sort: SortTypes.POPULAR
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,6 +12,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return extend(state, {
         city: action.payload
+      });
+    case ActionType.CHANGE_SORT:
+      return extend(state, {
+        sort: action.payload
       });
   }
 
