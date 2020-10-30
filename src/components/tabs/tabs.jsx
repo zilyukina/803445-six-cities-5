@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CitiesTabItem from "./cities-tab-item";
+import TabItem from "./tab-item";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
-const CitiesTabs = (props) => {
+const Tabs = (props) => {
   const {cities, onChangeCity, city} = props;
   return (
     <div className="tabs">
@@ -12,7 +12,7 @@ const CitiesTabs = (props) => {
         <ul className="locations__list tabs__list">
           <React.Fragment>
             {cities.map((cityItem, index) =>
-              <CitiesTabItem key={index}
+              <TabItem key={index}
                 city={cityItem}
                 isActive={cityItem === city}
                 setActive={() => onChangeCity(cityItem)}
@@ -24,7 +24,7 @@ const CitiesTabs = (props) => {
   );
 };
 
-CitiesTabs.propTypes = {
+Tabs.propTypes = {
   cities: PropTypes.array.isRequired,
   onChangeCity: PropTypes.func,
   city: PropTypes.string.isRequired
@@ -40,5 +40,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {CitiesTabs};
-export default connect(mapStateToProps, mapDispatchToProps)(CitiesTabs);
+export {Tabs};
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

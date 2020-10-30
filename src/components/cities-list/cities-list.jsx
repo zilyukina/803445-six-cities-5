@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list";
 import Map from "../map/map";
 import MapConfig from '../map/config';
-import CitiesTabs from "../cities-tabs/cities-tabs";
+import Tabs from "../tabs/tabs";
 import {connect} from "react-redux";
 import Sort from "../sort/sort";
 
@@ -17,7 +17,7 @@ const CitiesList = (props) => {
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            <CitiesTabs cities={citiesList}/>
+            <Tabs cities={citiesList}/>
           </ul>
         </section>
       </div>

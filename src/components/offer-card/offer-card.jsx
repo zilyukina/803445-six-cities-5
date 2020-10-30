@@ -15,19 +15,15 @@ const OfferCard = ({offer, setActive, cardModifier, imgModifier, infoModifier, s
     id,
     isFavorite
   } = offer;
-  const classesCard = `place-card ${cardModifier}`;
-  const classesImg = `place-card__image-wrapper ${imgModifier}`;
-  const classesInfo = `place-card__info ${infoModifier}`;
-  const classesBtnFavorite = `place-card__bookmark-button ${ isFavorite ? `place-card__bookmark-button--active` : ``}  button`;
 
   return (
-    <article className={classesCard} onMouseEnter={() => setActive(offer)} onMouseLeave={() => setActive(null)}>
+    <article className={`place-card ${cardModifier}`} onMouseEnter={() => setActive(offer)} onMouseLeave={() => setActive(null)}>
       {premium && showPremiumLabel &&
         <div className="place-card__mark">
           <span >Premium</span>
         </div>
       }
-      <div className={classesImg}>
+      <div className={`place-card__image-wrapper ${imgModifier}`}>
         <Link
           to={{
             pathname: `/offer/${id}`,
@@ -36,13 +32,13 @@ const OfferCard = ({offer, setActive, cardModifier, imgModifier, infoModifier, s
             alt="Place image" />
         </Link>
       </div>
-      <div className={classesInfo}>
+      <div className={`place-card__info ${infoModifier}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={classesBtnFavorite} type="button">
+          <button className={`place-card__bookmark-button ${ isFavorite ? `place-card__bookmark-button--active` : ``}  button`} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
