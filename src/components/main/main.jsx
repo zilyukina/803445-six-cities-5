@@ -1,13 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CitiesList from "../cities-list/cities-list";
-import {connect} from "react-redux";
 
 const Main = (props) => {
-  const {citiesList, offers, city, citiesCenters} = props;
-  const getOffers = () => {
-    return offers.filter((offer) => offer.city === city).slice(0, 6);
-  };
+  const {citiesList, offers, citiesCenters} = props;
   const getFakeOffersAmount = () => {
     return Math.floor(Math.random() * 10 + 6);
   };
@@ -37,7 +33,7 @@ const Main = (props) => {
       </header>
 
       <main className="page__main page__main--index">
-        <CitiesList citiesCenters={citiesCenters} offersAmount={getFakeOffersAmount()} offers={getOffers()} citiesList={citiesList}/>
+        <CitiesList citiesCenters={citiesCenters} offersAmount={getFakeOffersAmount()} offers={offers} citiesList={citiesList}/>
       </main>
     </div>
   );
@@ -46,14 +42,8 @@ const Main = (props) => {
 Main.propTypes = {
   citiesList: PropTypes.array.isRequired,
   offers: PropTypes.array,
-  city: PropTypes.string.isRequired,
+  // city: PropTypes.string.isRequired,
   citiesCenters: PropTypes.object
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-});
-
-
-export {Main};
-export default connect(mapStateToProps)(Main);
+export default Main;

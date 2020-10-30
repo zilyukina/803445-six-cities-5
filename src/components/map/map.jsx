@@ -5,88 +5,60 @@ import './map.css';
 import {connect} from "react-redux";
 
 class Map extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      map: null,
-      defaultCity: null,
-      offers: [],
-      icon: null,
-      layer: null
-    };
-  }
-
   componentDidMount() {
-    const {config} = this.props;
-    this.updateLocation();
+    const {config, offers, defaultCity} = this.props;
+    this.markers = {};
     this.icon = leaflet.icon({
       iconUrl: config.ICON_URL,
       iconSize: config.ICON_SIZE
     });
 
+    this.activeIcon = leaflet.icon({
+      iconUrl: config.ICON_ACTIVE_URL,
+      iconSize: config.ICON_SIZE
+    });
+
     const zoom = config.DЕFAULT_ZOOM;
     this.map = leaflet.map(`map`, {
-      center: this.defaultCity,
+      center: defaultCity,
       zoom,
       zoomControl: false,
       marker: true
     });
 
-    this.map.setView(this.defaultCity, zoom);
+    this.map.setView(defaultCity, zoom);
 
     leaflet
       .tileLayer(config.TILE_LAYER_URL_TEMPLATE, config.TILE_LAYER_URL_OPTIONS)
       .addTo(this.map);
-    this.refreshView();
 
+
+    offers.forEach((offer) => {
+      const offerCords = offer.coordinates;
+      this.markers[offer.id] = leaflet
+        .marker(offerCords, {icon: this.icon})
+        .addTo(this.map);
+    });
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.defaultCity !== prevProps.defaultCity) {
-      // this.map.remove();
-      // const zoom = this.props.config.DЕFAULT_ZOOM;
-      // this.map = leaflet.map(`map`, {
-      //   center: this.props.defaultCity,
-      //   zoom,
-      //   zoomControl: false,
-      //   marker: true
-      // });
+      this.map.setView(this.props.defaultCity, 12);
+    }
 
-      this.updateLocation();
-      this.refreshView();
+    if (this.props.activeOffer !== prevProps.activeOffer) {
+      this.updateMarker(this.props.activeOffer);
     }
   }
 
-  refreshView() {
-    // this.map.remove();
-    // const zoom = this.props.config.DЕFAULT_ZOOM;
-    // this.map = leaflet.map(`map`, {
-    //   center: this.defaultCity,
-    //   zoom,
-    //   zoomControl: false,
-    //   marker: true
-    // });
+  updateMarker(offer) {
+    Object.values(this.markers).forEach((marker) => {
+      marker.setIcon(this.icon);
+    });
 
-    this.map.setView(this.defaultCity, 12);
-
-    // const offers =  this.offers.forEach((offer) => {})
-    const coords = this.props.offers[0].coordinates;
-    const layer = leaflet.marker(coords, {icon: this.icon}).addTo(this.map);
-    layer.addTo(this.map)
-      // .addTo(this.map);
-
-    // this.offers.forEach((offer) => {
-    //   const offerCords = offer.coordinates;
-    //   leaflet
-    //     .marker(offerCords, {icon: this.icon})
-    //     .addTo(this.map);
-    // });
-  }
-
-  updateLocation() {
-    this.defaultCity = this.props.defaultCity;
-    this.offers = this.props.offers;
+    if (offer) {
+      this.markers[offer.id].setIcon(this.activeIcon);
+    }
   }
 
   render() {
@@ -100,13 +72,13 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
-  defaultCity: PropTypes.arrayOf(PropTypes.number).isRequired,
+  defaultCity: PropTypes.arrayOf(PropTypes.number),
   config: PropTypes.object.isRequired,
-  // activeOffer: PropTypes.string
+  activeOffer: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-  // activeOffer: state.activeOffer,
+  activeOffer: state.activeOffer,
 });
 
 export {Map};

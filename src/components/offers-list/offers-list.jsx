@@ -10,16 +10,17 @@ class OffersList extends PureComponent {
     super(props);
 
     this.state = {
-      offers: this.props.offers
+      offers: this.props.offers.filter((offer) => offer.city === this.props.city)
     };
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.sort !== prevProps.sort) {
+    if (this.props.sort !== prevProps.sort || this.props.city !== prevProps.city) {
       this.setState({
-        offers: this.sortedOffers(this.props.offers, this.props.sort)
+        offers: this.sortedOffers(this.props.offers, this.props.sort).filter((offer) => offer.city === this.props.city)
       });
     }
+
   }
 
   sortedOffers(offers, sort) {
@@ -31,7 +32,7 @@ class OffersList extends PureComponent {
       case SortTypes.TOP_RATED_FIRST:
         return offers.sort((a, b) => b.stars - a.stars);
       default:
-        return offers;
+        return offers.sort((a, b) => a.id - b.id);
     }
   }
 
@@ -63,11 +64,12 @@ OffersList.propTypes = {
   imgModifier: PropTypes.string,
   infoModifier: PropTypes.string,
   sort: PropTypes.string.isRequired,
-
+  city: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
   sort: state.sort,
+  city: state.city,
   activeOffer: state.activeOffer
 });
 

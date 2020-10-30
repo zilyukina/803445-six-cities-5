@@ -1,11 +1,11 @@
 import {ActionType} from './action';
 import {extend} from '../utils/extend';
-import {SortTypes} from '../const'
+import {SortTypes} from '../const';
 
 const initialState = {
   city: `Paris`,
   sort: SortTypes.POPULAR,
-  activeOffer: ``
+  activeOffer: {}
 };
 
 const reducer = (state = initialState, action) => {
